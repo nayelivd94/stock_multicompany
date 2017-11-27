@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_picking_form_stock_multicompany" model="ir.ui.view">
+            <field name="name">View picking form stock multicompany</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_assign']" position="after">
+                    <!-- Add your fields or attributes here states="confirmed,waiting,partially_available"-->
+                    <button name="consignar"  string="Consignar" type="object" class="oe_highlight" attrs="{'invisible': [('hiddestate','=', False)]}" />
+
+                </xpath>
+                <xpath expr="//notebook/page[@name='extra']/group/group/field[@name='picking_type_id']" position="after">
+                   <field name="valor"/>
+                    <field name="hiddestate"/>
+                </xpath>
+                <xpath expr="//header/button[@name='force_assign']" position="replace">
+                  <button name="force_assign2" states="confirmed,waiting,partially_available" string="Forzar Disponibilidad" type="object" groups="stock.group_stock_manager"/>
+                </xpath>
+                <button name="action_assign" states="confirmed,waiting"  type="object" class="oe_highlight" groups="base.group_user" position="replace">
+                        <button name="action_assign2" states="confirmed,waiting" string="Reserva" type="object" class="oe_highlight" groups="base.group_user"/>
+                </button>
+
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>

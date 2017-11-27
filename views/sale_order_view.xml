@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_stock_product_tree_stock_multicompany" model="ir.ui.view">
+            <field name="name">product.stock.tree.inherit.stock.multicompany</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='qty_available']" position="replace">
+                    <field name="sudo_qty_available"/>
+                </xpath>
+
+
+                <xpath expr="//field[@name='virtual_available']" position="replace">
+                    <field name="sudo_virtual_available"/>
+                </xpath>
+
+                <tree position="attributes">
+                    <attribute name="decoration-danger">sudo_virtual_available&lt;0</attribute>
+                    <attribute name="decoration-info">sudo_virtual_available&gt;=0</attribute>
+                </tree>
+
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>

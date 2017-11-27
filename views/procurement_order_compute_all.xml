@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record id="view_procurement_order_compute_stock_multicompany" model="ir.ui.view">
+            <field name="name">procurement.order.compute.inherit.stock.multicompany</field>
+            <field name="model">procurement.order.compute.all</field>
+            <field name="inherit_id" ref="procurement.view_compute_schedulers_wizard"/>
+            <field name="arch" type="xml">
+                <xpath expr="//footer/button[@name='procure_calculation']" position="before">
+                    <button name="procure_calculation2" string="-Run Schedulers" type="object" class="btn-primary"/>
+                </xpath>
+                <xpath expr="//footer/button[@name='procure_calculation']" position="replace">
+                     <button name="procure_calculation" string="Run Schedulers" type="object" class="btn-primary" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+</odoo>
